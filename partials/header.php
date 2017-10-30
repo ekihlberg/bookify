@@ -3,6 +3,7 @@ $pages = array();
 $pages["about.php"] = "About";
 $pages["browse.php"] = "Browse Books";
 $pages["mybooks.php"] = "My Books";
+$pages["gallery.php"] = "Images";
 $pages["contact.php"] = "Contact";
 
 
@@ -14,7 +15,7 @@ $pages["contact.php"] = "Contact";
        <ul>
 <?php foreach($pages as $url=>$title):?>
   <li>
-       <a <?php if($url === $activePage):?>class="active"<?php endif;?> href="<?php echo $url;?>">
+       <a <?php if($url === $current_page):?>class="active"<?php endif;?> href="<?php echo $url;?>">
          <?php echo $title;?>
       </a>
   </li>

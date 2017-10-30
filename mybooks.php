@@ -12,34 +12,64 @@ $activePage = "mybooks.php";?>
 
   </div>
 </div>
+<?php
+@ $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
 
+
+if ($db->connect_error) {
+    echo "could not connect: " . $db->connect_error;
+    printf("<br><a href=index.php>Return to home page </a>");
+    exit();
+}
+
+# Build the query. Users are allowed to search on title, author, or both
+$query = " select * from books where loaned=1";
+
+
+
+$stmt = $db->prepare($query);
+$stmt->bind_result($isbn, $title, $author, $nopages, $editon, $published, $company, $loaned);
+$stmt->execute();
+
+
+ ?>
 
 <div class="content__contain">
   <ul class="booklist">
-    <li>
-      <p ><span class="Name">Nyckeln till frihet </span> by
+    <li><?php
+      $recordExists = 0;
+     while ($stmt->fetch()):
+       if($recordExists == 0 ){
+         $recordExists = 1;
+       // something else to display the content
 
-      <span class="Author">John Doe </span></p>
+      }
 
-      <form action="" method="post">
-        <input type="hidden" name="id" value="<?= $author_data['ID'] ?>">
-        <input type="submit" value='Delete'>
+            ?>
+   <li>
 
-      </form>
+     <p ><span class="Name"><?php echo $title;  ?></span> by
 
-    </li>
-    <li>
+     <span class="Author"><?php echo $author;  ?> </span></p>
 
-      <p ><span class="Name">Pippi Långstrump</span> by
+       <div class="btns">
+       <form action="delete.php" method="GET">
+         <input type="submit" value='Remove' id="delete">
+         <input type="hidden" name="delete" value="<?= $isbn ?>">
+       </form>
+       </div>
 
-      <span class="Author">Astrid lindgren </span></p>
+   </li>
 
-      <form action="" method="post">
-        <input type="hidden" name="id" value="<?= $author_data['ID'] ?>">
-        <input type="submit"  value='Delete'>
+ <?php endwhile;
+ if($recordExists == 0 ){
+    ?>
+    <p>
+      No books reserved
+    </p>
 
-      </form>
-    </li>
+    <?php
+ }?>
   </ul>
 </div>
 

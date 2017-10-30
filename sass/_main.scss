@@ -1,5 +1,5 @@
 
-$theme: #02260E;
+$theme: #02393a;
 $seconadry-theme: #021E26;
 p{
 font-family: Montserrat-Regular;
@@ -55,6 +55,9 @@ header{
     font-family: Montserrat-medium;
     font-size: 16px;
     color: #FFFFFF;
+    &:hover{
+      color: $seconadry-theme;
+    }
     }
   }
 }
@@ -260,13 +263,16 @@ input,textarea{
   color: #fff;
   background-color: rgb(2, 24, 30);
   border: 0;
+  padding-left: 20px;
   padding-right: 20px;
   padding-right: 48px;
   position: absolute;
   top: 0;
   right: 0;
   margin: 5px;
-
+}
+input[type="submit"]{
+  background-color: $theme;
 }
 }
 
@@ -308,4 +314,11 @@ width: 28px;
   align-items: stretch;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+.active{
+  border-bottom: solid #fff 2px;
+  &:hover{
+    border-bottom: solid $seconadry-theme 2px;
+  }
 }

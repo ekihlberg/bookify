@@ -19,6 +19,11 @@ $activePage = "about.php";?>
 
 <img src="img/book.jpg" alt="">
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur rem odit laboriosam esse! Enim voluptate nam exercitationem inventore, illum consequatur asperiores ratione architecto maiores fugit. Assumenda, nesciunt at nobis est.</p>
+
+
+</body>
+</html>
+
 </div>
 
 <?php include_once 'partials/footer.php'; ?>
